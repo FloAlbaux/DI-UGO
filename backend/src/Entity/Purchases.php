@@ -30,12 +30,19 @@ class Purchases
     private ?\DateTimeInterface $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'purchases')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Customer $customer = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getPurchaseIdentifier(): ?string
