@@ -33,7 +33,7 @@ class CustomerController extends AbstractController
                 'firstname' => $customer->getFirstname(),
                 'postal_code' => $customer->getPostalcode(),
                 'city' => $customer->getCity(),
-                'email' => $customer->getEmail(), 
+                'email' => $customer->getEmail(),
             ];
         }
 
@@ -48,31 +48,23 @@ class CustomerController extends AbstractController
         if (!$customer) {
             return $this->json(['error' => 'Customer not found'], 404);
         }
-        // $data[] = [
-        //     'id' => $customer->getId(),
-        //     'title' => $customer->getTitle(),
-        //     'lastname' => $customer->getLastname(),
-        //     'firstname' => $customer->getFirstname(),
-        //     'postal_code' => $customer->getPostalcode(),
-        //     'city' => $customer->getCity(),
-        //     'email' => $customer->getEmail(), 
-        // ];
 
         $orders = $customer->getPurchases();
 
         $data = [];
         foreach ($orders as $order) {
             $data[] = [
-                'id' => $order->getId(),
                 'purchaseIdentifier' => $order->getPurchaseIdentifier(),
                 'quantity' => $order->getQuantity(),
                 'price' => $order->getPrice(),
                 'currency' => $order->getCurrency(),
-                'date' => $order->getDate()->format('Y-m-d'), // Format de date selon vos besoins
-                // Ajoutez d'autres champs selon votre entité Order
+                'date' => $order->getDate()->format('Y-m-d'),
             ];
         }
 
-        return $this->json($data);
+        return $this->json([
+            'lastname' => $customer->getLastname(),
+            'orders' => $data,
+        ]);
     }
 }
