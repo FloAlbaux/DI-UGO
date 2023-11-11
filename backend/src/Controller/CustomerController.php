@@ -10,14 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CustomerController extends AbstractController
 {
-    #[Route('/customer', name: 'app_customer')]
-    public function index(): JsonResponse
-    {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/CustomerController.php',
-        ]);
-    }
 
     #[Route('/customers', name: 'app_customers')]
     public function getCustomers(EntityManagerInterface $entityManager): JsonResponse
@@ -42,9 +34,9 @@ class CustomerController extends AbstractController
     }
 
     #[Route('/customers/{customerId}/orders', name: 'app_customer_orders')]
-    public function getCustomerOrders(int $customerId, EntityManagerInterface $entityManager): JsonResponse
+    public function getCustomerOrders(string $customerId, EntityManagerInterface $entityManager): JsonResponse
     {
-        $customer = $entityManager->getRepository(Customer::class)->find($customerId);
+        $customer = $entityManager->getRepository(Customer::class)->find((int) $customerId);
 
         if (!$customer) {
             return $this->json(['error' => 'Customer not found'], 404);
