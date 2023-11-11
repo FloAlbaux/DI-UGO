@@ -12,7 +12,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
     name: 'ugo:orders:import',
-    description: 'Add a short description for your command',
+    description: 'Import db from custom and order csv',
 )]
 class UgoOrdersImportCommand extends Command
 {
@@ -21,29 +21,23 @@ class UgoOrdersImportCommand extends Command
         parent::__construct();
     }
 
-    protected function configure(): void
-    {
-        $this
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
-        ;
-    }
+    // protected function configure(): void
+    // {
+    //     $this
+    //         ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
+    //         ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+    //     ;
+    // }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $arg1 = $input->getArgument('arg1');
+        $customersData = $this->readCsvFile('csv/customers.csv');
+        $purchasesData = $this->readCsvFile('csv/purchases.csv');
 
-        if ($arg1) {
-            $io->note(sprintf('You passed an argument: %s', $arg1));
-        }
+        $io->success('Succecfuly imported CSV');
 
-        if ($input->getOption('option1')) {
-            // ...
-        }
-
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
-
+        $entityManager->flush();
         return Command::SUCCESS;
     }
 }
