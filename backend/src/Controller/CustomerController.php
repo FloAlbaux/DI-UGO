@@ -34,6 +34,7 @@ class CustomerController extends AbstractController
                 'postal_code' => $customer->getPostalcode(),
                 'city' => $customer->getCity(),
                 'email' => $customer->getEmail(),
+                'orders' => $customer->getPurchases()->count(),
             ];
         }
 
@@ -54,7 +55,8 @@ class CustomerController extends AbstractController
         $data = [];
         foreach ($orders as $order) {
             $data[] = [
-                'purchaseIdentifier' => $order->getPurchaseIdentifier(),
+                'purchase_identifier' => $order->getPurchaseIdentifier(),
+                'product_id' => $order->getId(),
                 'quantity' => $order->getQuantity(),
                 'price' => $order->getPrice(),
                 'currency' => $order->getCurrency(),
@@ -63,7 +65,7 @@ class CustomerController extends AbstractController
         }
 
         return $this->json([
-            'lastname' => $customer->getLastname(),
+            'last_name' => $customer->getLastname(),
             'orders' => $data,
         ]);
     }
