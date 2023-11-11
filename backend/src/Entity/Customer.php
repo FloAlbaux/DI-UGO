@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Customer
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
@@ -44,6 +43,12 @@ class Customer
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function setId(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getTitle(): ?int
