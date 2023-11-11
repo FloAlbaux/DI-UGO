@@ -97,6 +97,7 @@ class UgoOrdersImportCommand extends Command
     private function createCustomerFromCsvRow(array $row): Customer
     {
         $customer = new Customer();
+        $customer->setId((int) $row[0]);
         $customer->setTitle(isset($row[1]) ? (int) $row[1] : null);
         $customer->setLastname(isset($row[2]) ? $row[2] : null);
         $customer->setFirstname(isset($row[3]) ? $row[3] : null);
