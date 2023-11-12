@@ -1,5 +1,4 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import logo from './displaylogo.png';
 import './App.css';
 import Customer from './Components/Customer';

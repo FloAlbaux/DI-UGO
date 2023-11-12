@@ -17,7 +17,8 @@ const Orders: React.FC = () => {
 
     useEffect(() => {
         if (orderId) {
-            fetch(`http://localhost:8000/customers/${orderId}/orders`)
+            const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000/';
+            fetch(apiUrl + `customers/${orderId}/orders`)
                 .then(response => response.json())
                 .then(data => {
                     setCustomerData(data)
@@ -25,7 +26,7 @@ const Orders: React.FC = () => {
                 })
                 .catch(error => console.error('Error fetching customer orders:', error));
         }
-    }, []);
+    }, [orderId]);
 
     return (
         <div className="orders-container">
@@ -50,7 +51,7 @@ const Orders: React.FC = () => {
                         </thead>
                         <tbody>
                             {customerData.orders.map((order: any) => (
-                                <tr key={order.purchase_identifier}>
+                                <tr key={order.product_id}>
                                     <td>{order.purchase_identifier || ''}</td>
                                     <td>{order.product_id || ''}</td>
                                     <td>{order.quantity || ''}</td>

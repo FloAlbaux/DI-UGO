@@ -21,7 +21,8 @@ const Customer: React.FC = () => {
   useEffect(() => {
     const fetchCustomerData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/customers');
+        const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000/';
+        const response = await fetch(apiUrl + 'customers');
         if (!response.ok) {
           throw new Error('Failed to fetch customer data');
         }
@@ -59,7 +60,7 @@ const Customer: React.FC = () => {
             </thead>
             <tbody>
               {customerData.map((customer) => (
-                <tr>
+                <tr key={customer.id}>
                   <td>{`${customer.id || ''}`}</td>
                   <td>{`${customer.title === 1 ? 'M.' : 'Mme.'}`}</td>
                   <td>{`${customer.lastname || ''}`}</td>
