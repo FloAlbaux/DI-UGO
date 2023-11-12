@@ -14,6 +14,7 @@ cd ..
 # Frontend Setup
 ```bash
 cd frontend
+cp .env_default .env
 npm install
 npm start
 cd ..
