@@ -37,7 +37,7 @@ const Customer: React.FC = () => {
 
   return (
     <div className="orders-container">
-      <h1>Customer Page</h1>
+      <h1>Customers</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (

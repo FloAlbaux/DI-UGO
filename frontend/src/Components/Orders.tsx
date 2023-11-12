@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import '../Style/order.css'
+import '../Style/table.css'
 
 interface RouteParams {
     [key: string]: string | undefined;
