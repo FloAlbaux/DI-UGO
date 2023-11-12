@@ -11,6 +11,19 @@ class CustomerControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/customers');
 
+        $responseData = json_decode($client->getResponse()->getContent(), true);
+
+        foreach ($responseData as $customer) {
+            $this->assertArrayHasKey('id', $customer);
+            $this->assertArrayHasKey('title', $customer);
+            $this->assertArrayHasKey('lastname', $customer);
+            $this->assertArrayHasKey('firstname', $customer);
+            $this->assertArrayHasKey('postal_code', $customer);
+            $this->assertArrayHasKey('city', $customer);
+            $this->assertArrayHasKey('email', $customer);
+            $this->assertArrayHasKey('orders', $customer);
+        }
+
         $this->assertResponseIsSuccessful();
         $this->assertJson($client->getResponse()->getContent());
     }
@@ -24,6 +37,19 @@ class CustomerControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($client->getResponse()->getContent());
+
+        $responseData = json_decode($client->getResponse()->getContent(), true);
+        $this->assertArrayHasKey('last_name', $responseData);
+        $this->assertArrayHasKey('orders', $responseData);
+
+        foreach ($responseData['orders'] as $order) {
+            $this->assertArrayHasKey('purchase_identifier', $order);
+            $this->assertArrayHasKey('product_id', $order);
+            $this->assertArrayHasKey('quantity', $order);
+            $this->assertArrayHasKey('price', $order);
+            $this->assertArrayHasKey('currency', $order);
+            $this->assertArrayHasKey('date', $order);
+        }
 
         $responseData = json_decode($client->getResponse()->getContent(), true);
         $this->assertArrayHasKey('last_name', $responseData);
