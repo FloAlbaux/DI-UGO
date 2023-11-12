@@ -9,6 +9,8 @@ interface RouteParams {
 }
 
 const Orders: React.FC = () => {
+    document.title = document.title + " | Oders";
+
     const [customerData, setCustomerData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const { orderId } = useParams<RouteParams>();
