@@ -16,6 +16,7 @@ cd ..
 cd frontend
 npm install
 npm start
+cd ..
 ```
 
 # Backend Testing
