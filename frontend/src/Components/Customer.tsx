@@ -13,6 +13,8 @@ interface CustomerData {
 }
 
 const Customer: React.FC = () => {
+  document.title = document.title + " | Customer";
+
   const [customerData, setCustomerData] = useState<CustomerData[]>([]);
   const [loading, setLoading] = useState(true);
 
