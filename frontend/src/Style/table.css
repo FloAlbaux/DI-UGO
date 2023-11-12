@@ -1,0 +1,62 @@
+.orders-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    overflow-x: auto; /* Ajout d'un défilement horizontal pour les petits écrans */
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 1rem;
+}
+
+.orders-table th, .orders-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Styles for the header */
+.orders-table th {
+    background-color: #333; /* Gris très foncé */
+    color: white; /* Texte en gras blanc */
+}
+
+/* Styles for alternating rows in the tbody */
+.orders-table tbody tr:nth-child(even) {
+    background-color: #f8f8f8; /* Gris clair */
+}
+
+.orders-table tbody tr:nth-child(odd) {
+    background-color: #e0e0e0; /* Gris plus foncé */
+}
+
+/* Styles for the rounded corners of the table */
+.orders-table th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.orders-table th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.orders-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.orders-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+/* Media Query pour rendre le tableau responsive */
+@media screen and (max-width: 800px) {
+    .orders-table {
+        overflow-x: auto; /* Ajout d'un défilement horizontal pour les petits écrans */
+    }
+
+    .orders-table th, .orders-table td {
+        font-size: 8px; /* Ajuster la taille de la police pour les petits écrans */
+    }
+}
