@@ -61,7 +61,7 @@ const Customer: React.FC = () => {
               {customerData.map((customer) => (
                 <tr>
                   <td>{`${customer.id || ''}`}</td>
-                  <td>{`${customer.title === 1 ? 'M.' : 'Mme.'} ${customer.lastname} ${customer.firstname}`}</td>
+                  <td>{`${customer.title === 1 ? 'M.' : 'Mme.'}`}</td>
                   <td>{`${customer.lastname || ''}`}</td>
                   <td>{`${customer.firstname || ''}`}</td>
                   <td>{`${customer.postal_code || ''}`}</td>
