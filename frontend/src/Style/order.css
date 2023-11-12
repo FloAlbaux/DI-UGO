@@ -1,0 +1,25 @@
+.orders-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.orders-table th, .orders-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.go-back-link {
+    display: block;
+    margin-top: 20px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}

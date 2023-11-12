@@ -36,22 +36,45 @@ const Customer: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="orders-container">
       <h1>Customer Page</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
-          {customerData.map((customer) => (
-            <li key={customer.id}>
-              <p>{`${customer.title === 1 ? 'M.' : 'Mme.'} ${customer.lastname} ${customer.firstname}`}</p>
-              <p>{`Postal Code: ${customer.postal_code || 'N/A'}`}</p>
-              <p>{`City: ${customer.city || 'N/A'}`}</p>
-              <p>{`Email: ${customer.email || 'N/A'}`}</p>
-              <Link to={`/orders/${customer.id}`}>Show ({customer.orders})</Link>
-            </li>
-          ))}
-        </ul>
+        <div>
+          <table className="orders-table">
+            <thead>
+              <tr>
+                <th>Id user</th>
+                <th>Title</th>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Postal Code</th>
+                <th>City</th>
+                <th>Email</th>
+                <th>Orders</th>
+              </tr>
+            </thead>
+            <tbody>
+              {customerData.map((customer) => (
+                <tr>
+                  <td>{`${customer.id || ''}`}</td>
+                  <td>{`${customer.title === 1 ? 'M.' : 'Mme.'} ${customer.lastname} ${customer.firstname}`}</td>
+                  <td>{`${customer.lastname || ''}`}</td>
+                  <td>{`${customer.firstname || ''}`}</td>
+                  <td>{`${customer.postal_code || ''}`}</td>
+                  <td>{`${customer.city || ''}`}</td>
+                  <td>{`${customer.email || ''}`}</td>
+                  <td>{customer.orders > 0 ? (
+                    <Link to={`/orders/${customer.id}`}>Show ({customer.orders})</Link>
+                  ) : ('No order')
+                  }
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
